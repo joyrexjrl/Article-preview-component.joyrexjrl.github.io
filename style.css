@@ -89,6 +89,15 @@ body{
     background-color: var(--light-grayish-blue);
 }
 
+main{
+    width: 95%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 p{
     color: var(--desaturated-dark-blue);
 }
@@ -107,24 +116,26 @@ h2{
 }
 
 .container{
+    margin-inline: auto;
     width: 90%;
     max-width: 380px;
     background-color: white;
-    border-radius: 0 0 10px 10px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    border-radius: 10px;    
 }
 
 .main-image{
     border-radius: 10px 10px 0 0;
 }
 
+.desktop-view{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .inner-container{
     width: 80%;
-    margin: 2rem auto;    
+    margin: 2rem auto 2rem;    
 }
 
 .main-description{
@@ -135,6 +146,7 @@ h2{
 .footer-container{
     position: relative;
     padding: 1rem 0;
+    overflow: hidden;
 }
 
 .avatar{
@@ -144,6 +156,7 @@ h2{
 
 .avatar-img{
     width: 15%;
+    max-width: 50px;
     border-radius: 50px;
     margin-right: 1rem;
 }
@@ -186,7 +199,15 @@ h2{
     background-color: var(--very-dark-grayish-blue);
     padding: 1rem 0;
     border-radius: 0 0 10px 10px;
-    opacity: .5;
+    z-index: 100;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform .2s ease-in, opacity .2s ease-in;
+}
+
+.active-social-clicked{
+    transform: translateX(0%);
+    opacity: 1;
 }
 
 .active-social-container{
@@ -195,9 +216,71 @@ h2{
     gap: 1rem;
 }
 
+.fa-icons{
+    cursor: pointer;
+    width: 20px;
+    transition: width .2s ease-in;
+}
+
+.fa-icons:hover{
+    width: 25px;
+}
+
 .share{
     font-size: 1rem;
     text-transform: uppercase;
     color: var(--grayish-blue);
     letter-spacing: 5px;
+}
+
+.attribution{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.attribution a{
+    color: black;
+    text-decoration: none;
+    transition: .2s ease-in;
+}
+
+.attribution a:hover{
+    color: var(--desaturated-dark-blue);
+}
+
+@media(min-width: 900px){
+    main{
+        width: 95%;
+    }
+    
+    .container{        
+        max-width: 950px;        
+    }
+
+    .desktop-container{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .main-image{
+        width: 30%;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .desktop-view{
+        width: 70%;
+    }
+
+    /* clicked section start */
+
+    .footer-container{
+        overflow: visible;
+    }
+
+    .active-social{
+        opacity: .5;
+        transform: translateX(120%);
+        width: 50%;
+    }
+
 }
